@@ -22,7 +22,8 @@ main {
 
 .main__window {
     max-width: 800px;
-    height: 416px;
+    display: flex;
+    align-items: stretch;
     background: white;
     margin: auto;
     position: relative;
@@ -31,9 +32,7 @@ main {
 
 .window__info {
     width: 40%;
-    height: 100%;
     padding: 80px 50px 55px 50px;
-    float: left;
     background: url("../assets/images/info-background.JPG");
     background-size: cover;
     position: relative;
@@ -89,7 +88,6 @@ main {
 .window__input {
     width: 60%;
     height: 100%;
-    float: left;
     padding: 60px;
     background: #fff;
 }
@@ -176,23 +174,30 @@ main {
     font-size: 11px;
 }
 
+.info__title--margin {
+    margin-bottom: 10px;
+}
+
+.window__info--padding {
+    padding-top: 50px;
+}
+
 @media screen and (max-width: 650px) {
     .main__window {
         height: initial;
+        flex-direction: column;
     }
 
     .window__info {
         width: 100%;
         padding: 50px 40px 80px 40px;
         height: initial;
-        float: none;
     }
 
     .window__input {
         width: 100%;
         padding: 40px;
-        height: initial;
-        float: none;
+        height: initial;    
     }
 
     .info__logo {

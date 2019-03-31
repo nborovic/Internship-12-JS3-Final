@@ -17,8 +17,8 @@ function registerUser() {
     let repeatPasswordErrorMessage = repeatPasswordInput.parentNode.querySelector(".field__error-message");
 
     if (registerForm.checkValidity() && passwordsMatch()) {
-        document.querySelectorAll(".field__error-message").forEach(errorMessage => errorMessage.innerText = "");
-        document.querySelectorAll(".field__img").forEach(img => img.style.display = "none");
+        registerForm.querySelectorAll(".field__error-message").forEach(errorMessage => errorMessage.innerText = "");
+        registerForm.querySelectorAll(".field__img").forEach(img => img.style.display = "none");
 
         let user = {
             "username": usernameInput.value,
