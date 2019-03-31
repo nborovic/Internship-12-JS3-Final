@@ -38,6 +38,7 @@
                 maxlength="10"
                 class="form__field"
               />
+              <p class="field__error-message"></p>
             </div>
 
             <label for="passwordInput" class="field__label">Password</label>
@@ -50,6 +51,7 @@
                 maxlength="10"
                 class="form__field"
               />
+              <p class="field__error-message"></p>
             </div>
 
             <span onclick="authenticate(this)" class="form__submit"
@@ -72,6 +74,7 @@
                 maxlength="10"
                 class="form__field"
               />
+              <p class="field__error-message"></p>
             </div>
 
             <label for="passwordInput" class="field__label">Password</label>
@@ -84,6 +87,7 @@
                 maxlength="10"
                 class="form__field"
               />
+              <p class="field__error-message"></p>
               <img src="./assets/images/checkmark.png" alt="Checkmark" class="field__img field__img--checkmark">
               <img src="./assets/images/crossmark.png" alt="Crossmark" class="field__img field__img--crossmark">
             </div>
@@ -100,6 +104,7 @@
                 maxlength="10"
                 class="form__field"
               />
+              <p class="field__error-message"></p>
               <img src="./assets/images/checkmark.png" alt="Checkmark" class="field__img field__img--checkmark">
               <img src="./assets/images/crossmark.png" alt="Crossmark" class="field__img field__img--crossmark">
             </div>
@@ -116,7 +121,7 @@
               > </label
             ><br />
 
-            <span onclick="registerUser(this)" class="form__submit"
+            <span class="form__submit"
               >Sign up</span
             >
             <span class="form__login"
@@ -128,6 +133,6 @@
       <section class="content-wrapper__window"></section>
     </main>
 
-    <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/register.js"></script>
   </body>
 </html>
