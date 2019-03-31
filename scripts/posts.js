@@ -1,9 +1,11 @@
-let body = document.querySelector("body");
+let body = document.body;
+let mainUsers = document.querySelector(".main__users");
+let usersWrapper = document.querySelector(".users__wrapper");
+let arrowTop = document.querySelector(".users__scroll-top");
 
 function getUsers() {
-    let usersWrapper = document.querySelector(".users__wrapper");
     usersWrapper.style.display = "flex";
-    document.querySelector(".main__users").style.display = "block";
+    mainUsers.style.display = "block";
 
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
@@ -45,9 +47,17 @@ function getUsers() {
                     <p class="post__user-id">User ID: ${user.id}</p>
                 </div>
             </figure>
-        `));
+        `))
+        .then(() => {
+            let firstUser = usersWrapper.querySelector(".wrapper__user");
 
-        setTimeout(() => {
+            window.onscroll = () => {
+                if(window.scrollY > firstUser.offsetHeight) {
+                    arrowTop.style.display = "block";
+                } else 
+                    arrowTop.style.display = "none"; 
+            };
+
             usersOverlay = document.querySelector(".users__overlay");
             let userPosts = document.querySelectorAll(".user__posts-wrapper");
 
@@ -62,8 +72,8 @@ function getUsers() {
                                 <p class="post__body">${post.body}</p>
                             </div>
                 `}
-            ))})
-        }, 250);
+            ))}
+        )});
 }
 
 function openDetails(element) {
@@ -88,4 +98,8 @@ function closePosts(element) {
     element.parentNode.style.display = "none";
     usersOverlay.style.display = "none";
     body.style.overflowY = "auto";
+}
+
+function scrollToTop() {
+    window.scroll(0, 0);
 }
