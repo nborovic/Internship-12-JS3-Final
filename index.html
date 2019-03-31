@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles/common.css" />
+    <link rel="stylesheet" href="./styles/authentication.css" />
+    <title>Internship-12-JS3-Final</title>
+  </head>
+  <body>
+    <main>
+      <div class="main__overlay"></div>
+      <section class="main__window">
+        <div class="window__info">
+          <div class="info__overlay"></div>
+          <div class="info__content">
+            <h1 class="info__title">Sign up</h1>
+            <p class="info__paragraph">
+              Xlyx is much better when you have an account.<br /><br />
+              Get yourself one.
+            </p>
+            <div class="info__logo">
+              <div class="logo__square"></div>
+              xlyx
+            </div>
+          </div>
+        </div>
+        <div class="window__input">
+          <form name="loginForm" class="input__form" id="input__form-login">
+            <label for="usernameInput" class="field__label">Username</label>
+            <div class="form__field-wrapper">
+              <input
+                type="text"
+                name="usernameInput"
+                required
+                minlength="5"
+                maxlength="10"
+                class="form__field"
+              />
+            </div>
+
+            <label for="passwordInput" class="field__label">Password</label>
+            <div class="form__field-wrapper">
+              <input
+                type="password"
+                name="passwordInput"
+                required
+                minlength="5"
+                maxlength="10"
+                class="form__field"
+              />
+            </div>
+
+            <span onclick="authenticate(this)" class="form__submit"
+              >Sign up</span
+            >
+          </form>
+
+          <form
+            name="registerForm"
+            class="input__form"
+            id="input__form-register"
+          >
+            <label for="usernameInput" class="field__label">Username</label>
+            <div class="form__field-wrapper">
+              <input
+                type="text"
+                name="usernameInput"
+                required
+                minlength="5"
+                maxlength="10"
+                class="form__field"
+              />
+            </div>
+
+            <label for="passwordInput" class="field__label">Password</label>
+            <div class="form__field-wrapper">
+              <input
+                type="password"
+                name="passwordInput"
+                required
+                minlength="5"
+                maxlength="10"
+                class="form__field"
+              />
+              <img src="./assets/images/checkmark.png" alt="Checkmark" class="field__img field__img--checkmark">
+              <img src="./assets/images/crossmark.png" alt="Crossmark" class="field__img field__img--crossmark">
+            </div>
+
+            <label for="repeatPasswordInput" class="field__label"
+              >Repeat password</label
+            >
+            <div class="form__field-wrapper">
+              <input
+                type="password"
+                name="repeatPasswordInput"
+                required
+                minlength="5"
+                maxlength="10"
+                class="form__field"
+              />
+              <img src="./assets/images/checkmark.png" alt="Checkmark" class="field__img field__img--checkmark">
+              <img src="./assets/images/crossmark.png" alt="Crossmark" class="field__img field__img--crossmark">
+            </div>
+
+            <label class="checkbox__label">
+              <input
+                type="checkbox"
+                name="newsletterCheckbox"
+                value="agree"
+                class="form__checkbox"
+              />By signing up I agree with
+              <span class="checkbox__label--green"
+                >terms and conditions.</span
+              > </label
+            ><br />
+
+            <span onclick="registerUser(this)" class="form__submit"
+              >Sign up</span
+            >
+            <span class="form__login"
+              >or <span class="form__login-button">Log in</span></span
+            >
+          </form>
+        </div>
+      </section>
+      <section class="content-wrapper__window"></section>
+    </main>
+
+    <script src="./scripts/authentication.js"></script>
+  </body>
+</html>
