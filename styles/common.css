@@ -29,3 +29,18 @@ body {
 .bg-lightskyblue--hover:hover {
     background: #0084ff;
 }
+
+.field__error-message {
+    width: 100%;
+    color: red;
+    margin-top: 5px;
+    font-size: 11px;
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+}
+
+.form__field-wrapper {
+    position: relative;
+    margin-bottom: 5px;
+}

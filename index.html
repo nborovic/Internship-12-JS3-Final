@@ -33,23 +33,30 @@
         <form name="loginForm" class="input__form" id="input__form-login">
           <label for="usernameInput" class="field__label">Username</label>
           <div class="form__field-wrapper">
-            <input type="text" name="usernameInput" required minlength="5" maxlength="10" class="form__field" />
+            <input type="text" name="usernameInput" class="form__field" />
             <p class="field__error-message"></p>
           </div>
 
           <label for="passwordInput" class="field__label">Password</label>
           <div class="form__field-wrapper">
-            <input type="password" name="passwordInput" required minlength="5" maxlength="10" class="form__field" />
+            <input type="password" name="passwordInput" class="form__field" />
             <p class="field__error-message"></p>
           </div>
 
-          <span class="form__submit">Sign in</span>
+          <span onclick="login()" class="form__submit">Sign in</span>
         </form>
 
         <form name="registerForm" class="input__form" id="input__form-register">
           <label for="usernameInput" class="field__label">Username</label>
           <div class="form__field-wrapper">
             <input type="text" name="usernameInput" required minlength="5" maxlength="10" class="form__field" />
+            <p class="field__error-message"></p>
+          </div>
+
+          <label for="usernameInput" class="field__label">Email</label>
+          <div class="form__field-wrapper">
+            <input type="email" name="emailInput" required minlength="5" maxlength="40"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form__field" />
             <p class="field__error-message"></p>
           </div>
 
@@ -70,13 +77,7 @@
             <img src="./assets/images/crossmark.png" alt="Crossmark" class="field__img field__img--crossmark">
           </div>
 
-          <label class="checkbox__label">
-            <input type="checkbox" name="newsletterCheckbox" value="agree" class="form__checkbox" />By signing up I
-            agree with
-            <span class="checkbox__label--green">terms and conditions.</span> </label><br />
-
-          <span class="form__submit">Sign up</span>
-          <span class="form__login">or <span class="form__login-button">Log in</span></span>
+          <span onclick="registerUser()" class="form__submit">Sign up</span>
         </form>
       </div>
     </section>
@@ -97,26 +98,28 @@
       </div>
 
       <div class="users__create">
-        <img onclick="closeCreatePost()" src="./assets/images/crossmark-black.png" alt="Crossmark" class="window__close window__close--top window__close--right">
+        <img onclick="closeCreatePost()" src="./assets/images/crossmark-black.png" alt="Crossmark"
+          class="window__close window__close--top window__close--right">
 
         <form class="create__form">
-            <div class="form__field-wrapper">
-              <label class="create__label" for="postTitle">Title</label>
-              <input class="create__field" type="text" name="postTitle" minlength="5" maxlength="50" required>
-              <p class="field__error-message"></p>
-            </div>
+          <label class="field__label" for="postTitle">Title</label>
+          <div class="form__field-wrapper">
+            <input class="form__field" type="text" name="postTitle" minlength="5" maxlength="50" required>
+            <p class="field__error-message"></p>
+          </div>
 
-            <div class="form__field-wrapper">
-              <label class="create__label" for="postBody">Body</label>
-              <input class="create__field" type="text" name="postBody" minlength="10" maxlength="250" required>
-              <p class="field__error-message"></p>
-            </div>
+          <label class="field__label" for="postBody">Body</label>
+          <div class="form__field-wrapper">
+            <input class="form__field" type="text" name="postBody" minlength="10" maxlength="250" required>
+            <p class="field__error-message"></p>
+          </div>
 
           <span onclick="createPost(this)" class="create__submit bg-lightskyblue--hover">Create</span>
         </form>
       </div>
 
-      <img onclick="scrollToTop()" class="users__scroll-top bg-lightskyblue--hover" src="./assets/images/arrow-top.png" alt="Top arrow">
+      <img onclick="scrollToTop()" class="users__scroll-top bg-lightskyblue--hover" src="./assets/images/arrow-top.png"
+        alt="Top arrow">
     </section>
   </main>
 

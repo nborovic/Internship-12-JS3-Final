@@ -65,6 +65,8 @@ function createPost(submit) {
             .then(json => alert("Success! => " + JSON.stringify(json)))
             .catch(error => {console.log(error); alert("User create failure")});
 
+        inputPostTitle.classList.remove("form__field--bb-red");
+        inputPostBody.classList.remove("form__field--bb-red");
         errorMessages.forEach(msg => msg.innerHTML = "");
         inputPostTitle.value = inputPostBody.value = "";
     } else {
@@ -81,6 +83,7 @@ function importPosts(post) {
     postsWrapper.innerHTML += `
     <div class="user__post">
         <h2 class="post__title">Title: ${post.title}</h2>
-        <p class="post__body">${post.body}</p>
+        <p class="post__id">Post ID: ${post.id}</p>
+        <p class="post__body">Post: ${post.body}</p>
     </div>`;
 }
