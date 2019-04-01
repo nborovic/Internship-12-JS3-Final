@@ -6,6 +6,8 @@ let arrowTop = document.querySelector(".users__scroll-top");
 let userDetails = document.querySelector(".users__details");
 
 function getUsers() {
+    body.style.overflowY = "auto";
+
     usersWrapper.style.display = "flex";
     mainUsers.style.display = "block";
 
