@@ -85,12 +85,43 @@
     <section class="main__users">
       <div class="users__wrapper">
         <div class="users__overlay"></div>
+        <!-- Users -->
       </div>
-      <img onclick="scrollToTop()" class="users__scroll-top" src="./assets/images/arrow-top.png" alt="Top arrow">
+
+      <div class="users__details">
+        <!-- User details -->
+      </div>
+
+      <div class="user__posts-wrapper">
+        <!-- User posts -->
+      </div>
+
+      <div class="users__create">
+        <img onclick="closeCreatePost()" src="./assets/images/crossmark-black.png" alt="Crossmark" class="window__close window__close--top window__close--right">
+
+        <form class="create__form">
+            <div class="form__field-wrapper">
+              <label class="create__label" for="postTitle">Title</label>
+              <input class="create__field" type="text" name="postTitle" minlength="5" maxlength="50" required>
+              <p class="field__error-message"></p>
+            </div>
+
+            <div class="form__field-wrapper">
+              <label class="create__label" for="postBody">Body</label>
+              <input class="create__field" type="text" name="postBody" minlength="10" maxlength="250" required>
+              <p class="field__error-message"></p>
+            </div>
+
+          <span onclick="createPost(this)" class="create__submit bg-lightskyblue--hover">Create</span>
+        </form>
+      </div>
+
+      <img onclick="scrollToTop()" class="users__scroll-top bg-lightskyblue--hover" src="./assets/images/arrow-top.png" alt="Top arrow">
     </section>
   </main>
 
   <script src="./scripts/register.js"></script>
+  <script src="./scripts/users.js"></script>
   <script src="./scripts/posts.js"></script>
   <script src="./scripts/login.js"></script>
 </body>

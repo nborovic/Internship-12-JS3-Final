@@ -1,105 +1,86 @@
-let body = document.body;
-let mainUsers = document.querySelector(".main__users");
-let usersWrapper = document.querySelector(".users__wrapper");
-let arrowTop = document.querySelector(".users__scroll-top");
+let postsWrapper = document.querySelector(".user__posts-wrapper");
+let usersCreate = document.querySelector(".users__create");
 
-function getUsers() {
-    usersWrapper.style.display = "flex";
-    mainUsers.style.display = "block";
+let createForm = document.querySelector(".create__form");
+let inputPostTitle = createForm.querySelector('input[name="postTitle"]');
+let inputPostBody =  createForm.querySelector('input[name="postBody"]');
+let errorMessages = createForm.querySelectorAll(".field__error-message");
 
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(users => users.forEach(user => usersWrapper.innerHTML += `
-            <figure class="wrapper__user">
-                <img onclick="openDetails(this)" src="./assets/images/user.png" alt="User icon" class="user__img">
-                <figcaption>
-                    <h2 class="user__firstname">${user.username}</h2>
-                    <p class="user__id">ID: ${user.id}</p>
-                    <p class="user__fullname">Name: ${user.name}</p>
-                    <p class="user__email">Email: ${user.email}</p>
-                    <button onclick="openPosts(this)" class="user__button-posts">Posts</button>
-                </figcaption>
+function openPosts(button) {
+    let selectedUserId = parseInt(button.id);
 
-                <div class="user__details">
-                    <img onclick="closeDetails(this)" src="./assets/images/crossmark-black.png" alt="Crossmark" class="window__close">
+    postsWrapper.innerHTML = `
+    <img onclick="closePosts()" src="./assets/images/crossmark-black.png" alt="Crossmark" class="window__close window__close--top">
+    <p class="post__user-id">User ID: ${selectedUserId}</p>`;
 
-                    <h1 class="details__name">Name: ${user.name}</h1>
-                    <p class="details__username">Username: ${user.username}</p>
-                    <p class="details__email">Email: ${user.email}</p>
-                    <p class="details__phone">Phone: ${user.phone}</p>
-                    <p class="details__web">Web: ${user.website}</p>
-            
-                    <h2 class="details__sub-title">Address:</h2>
-                    <p class="details__suite">Suite: ${user.address.suite}</p>
-                    <p class="details__city">City: ${user.address.city}</p>
-                    <p class="details__zip-code">Zip code: ${user.address.zipcode}</p>
-                    <p class="details__lat">Lat: ${user.address.geo.lat}</p>
-                    <p class="details__lng">Lng: ${user.address.geo.lng}</p>
-            
-                    <h2 class="details__sub-title">Company:</h2>
-                    <p class="details__company-name">Name: ${user.company.name}</p>
-                    <p class="details__company-phrase">Phrase: ${user.company.catchPhrase}</p>
-                    <p class="details__company-bs">Bs: ${user.name}</p>
-                </div>
+    fetch('https://jsonplaceholder.typicode.com/users/1/posts')
+        .then(ref => ref.json())
+        .then(posts => posts.forEach(post => {
+            if (selectedUserId === post.userId)
+                importPosts(post);
+        }));
 
-                <div class="user__posts-wrapper" id="${user.id}">
-                    <img onclick="closePosts(this)" src="./assets/images/crossmark-black.png" alt="Crossmark" class="window__close window__close--top">
-                    <p class="post__user-id">User ID: ${user.id}</p>
-                </div>
-            </figure>
-        `))
-        .then(() => {
-            let firstUser = usersWrapper.querySelector(".wrapper__user");
-
-            window.onscroll = () => {
-                if(window.scrollY > firstUser.offsetHeight) {
-                    arrowTop.style.display = "block";
-                } else 
-                    arrowTop.style.display = "none"; 
-            };
-
-            usersOverlay = document.querySelector(".users__overlay");
-            let userPosts = document.querySelectorAll(".user__posts-wrapper");
-
-            userPosts.forEach(wrapper => {
-            fetch('https://jsonplaceholder.typicode.com/users/1/posts')
-                .then(ref => ref.json())
-                .then(posts => posts.forEach(post => {
-                    if (wrapper.id === post.userId.toString())
-                        wrapper.innerHTML += `
-                            <div class="user__post">
-                                <h2 class="post__title">Title: ${post.title}</h2>
-                                <p class="post__body">${post.body}</p>
-                            </div>
-                `}
-            ))}
-        )});
-}
-
-function openDetails(element) {
-    element.parentNode.querySelector(".user__details").style.display = "block";
+    postsWrapper.style.display = "block";
     usersOverlay.style.display = "block";
     body.style.overflowY = "hidden";
 }
 
-function closeDetails(element) {
-    element.parentNode.style.display = "none";
+function closePosts() {
+    postsWrapper.style.display = "none";
     usersOverlay.style.display = "none";
     body.style.overflowY = "auto";
 }
 
-function openPosts(element) {
-    element.parentNode.parentNode.querySelector(".user__posts-wrapper").style.display = "block";
+function openCreatePost(button) {
+    let selectedUserId = button.id;
+    usersCreate.id = selectedUserId;
+
+    usersCreate.style.display = "block";
     usersOverlay.style.display = "block";
     body.style.overflowY = "hidden";
 }
 
-function closePosts(element) {
-    element.parentNode.style.display = "none";
+function closeCreatePost() {
+    usersCreate.style.display = "none";
     usersOverlay.style.display = "none";
     body.style.overflowY = "auto";
 }
 
-function scrollToTop() {
-    window.scroll(0, 0);
+function createPost(submit) {
+    selectedUserId = submit.parentNode.parentNode.id;
+
+    if(createForm.checkValidity()) {
+        fetch('https://jsonplaceholder.typicode.com/users', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: inputPostTitle.value,
+                body: inputPostBody.value,
+                userId: selectedUserId
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => response.json())
+            .then(json => alert("Success! => " + JSON.stringify(json)))
+            .catch(error => {console.log(error); alert("User create failure")});
+
+        errorMessages.forEach(msg => msg.innerHTML = "");
+        inputPostTitle.value = inputPostBody.value = "";
+    } else {
+        validateInput(inputPostTitle, 5, 50);
+        validateInput(inputPostBody, 10, 250);
+    }
+}
+
+/*
+    HTML import functions
+*/
+
+function importPosts(post) {
+    postsWrapper.innerHTML += `
+    <div class="user__post">
+        <h2 class="post__title">Title: ${post.title}</h2>
+        <p class="post__body">${post.body}</p>
+    </div>`;
 }

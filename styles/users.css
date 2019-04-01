@@ -16,13 +16,7 @@
     bottom: 50px;
     right: 50px;
     border-radius: 50%;
-    background: lightskyblue;
-    transition: background-color 250ms;
     cursor: pointer;
-}
-
-.users__scroll-top:hover {
-    background: #0084ff;
 }
 
 .users__wrapper {
@@ -31,6 +25,10 @@
     flex-wrap: wrap;
     justify-content: space-around;
     background: #fff;
+}
+
+.wrapper__user, .users__details, .user__posts-wrapper, .users__create {
+    box-shadow: 1px 1px 44px 0px rgba(0,0,0,0.35);
 }
 
 .wrapper__user {
@@ -66,23 +64,23 @@
     font-size: 20px;
 }
 
-.user__button-posts {
+.user__buttons {
     display: block;
-    margin: 25px auto 0 auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.user__button-posts {
     color: #fff;
-    background: lightskyblue;
     padding: 5px 10px;
+    margin-right: 10px;
     font-size: 17px;
     border-radius: 20px;
     cursor: pointer;
-    transition: background-color 250ms;
 }
 
-.user__button-posts:hover {
-    background: #0084ff;
-}
-
-.user__details {
+.users__details {
     max-width: 600px;
     width: 100%;
     padding: 45px;
@@ -107,7 +105,7 @@
     top: 0;
     left: 0;
     z-index: 1;
-    background: #00000056;
+    background: #00000086;
 }
 
 .window__close {
@@ -128,6 +126,10 @@
 
 .window__close--top {
     top: 20px;
+}
+
+.window__close--right {
+    right: 20px;
 }
 
 .details__name {
@@ -165,4 +167,44 @@
 
 .post__user-id {
     margin: 10px 0 30px 0;
+}
+
+.users__create {
+    display: none;
+    min-width: 257.81px;
+    padding: 50px 25px 15px 25px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    z-index: 2;
+}
+
+.create__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create__submit {
+    width: 100%;
+    color: #fff;
+    background: lightskyblue;
+    padding: 5px 10px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.create__label {
+    font-size: 12px;
+    color: grey;
+}
+
+.create__field {
+    width: 100%;
+    font-size: 15px;
+    padding: 5px;
+    border-bottom: 1px solid grey;
 }

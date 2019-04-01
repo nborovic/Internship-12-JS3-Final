@@ -32,9 +32,9 @@ function registerUser() {
         alert("User registered!")
 
     } else {
-        validateInput(usernameInput);
-        validateInput(passwordInput);
-        validateInput(repeatPasswordInput);
+        validateInput(usernameInput, 5, 10);
+        validateInput(passwordInput, 5, 10);
+        validateInput(repeatPasswordInput, 5, 10);
 
         if (!passwordsMatch()) {
             passwordErrorMessage.innerText = repeatPasswordErrorMessage.innerText ="Passwords don't match";
@@ -42,15 +42,15 @@ function registerUser() {
     }
 }
 
-function validateInput(element) {
+function validateInput(element, min, max) {
     let inputErrorMessage = element.parentNode.querySelector(".field__error-message");
 
     if (element.validity.valueMissing)
         inputErrorMessage.innerText = "Value missing";
     else if (element.validity.tooShort)
-        inputErrorMessage.innerText = "Not enough characters (min 5)";
+        inputErrorMessage.innerText = `Not enough characters (min ${min})`;
     else if (element.validity.tooLong)
-        inputErrorMessage.innerText = "Too many characters (max 10)";
+        inputErrorMessage.innerText = `Too many characters (max ${max})`;
     else 
         inputErrorMessage.innerText = "";
 }

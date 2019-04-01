@@ -20,3 +20,12 @@ body {
     height: 100%;
     overflow-x: hidden;
 }
+
+.bg-lightskyblue--hover {
+    background: lightskyblue;
+    transitioN: background-color 250ms;
+}
+
+.bg-lightskyblue--hover:hover {
+    background: #0084ff;
+}
