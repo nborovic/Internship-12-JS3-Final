@@ -3,7 +3,7 @@ let usersCreate = document.querySelector(".users__create");
 
 let createForm = document.querySelector(".create__form");
 let inputPostTitle = createForm.querySelector('input[name="postTitle"]');
-let inputPostBody =  createForm.querySelector('input[name="postBody"]');
+let inputPostBody =  createForm.querySelector('textarea[name="postBody"]');
 let errorMessages = createForm.querySelectorAll(".field__error-message");
 
 function openPosts(button) {
